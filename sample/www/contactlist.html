@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="../assets/ipc/front.js"></script>
+        <!--<meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">-->
+<meta http-equiv="Content-Security-Policy" content="default-src * gap://ready file:; style-src 'self' 'unsafe-inline' *; script-src 'self' 'unsafe-inline' 'unsafe-eval' *; img-src * data: 'unsafe-inline'">  
+
+        <meta name="format-detection" content="telephone=yes">
+        <meta name="msapplication-tap-highlight" content="no">
+        <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
+        <!--<link rel="stylesheet" type="text/css" href="css/index.css">-->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.css">
+    <link rel="stylesheet" type="text/css" href="css/material-design-iconic-font.min.css">
+    <link rel="stylesheet" type="text/css" href="css/devices.min.css">
+
+    <script src="js/moment.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+
+    <link rel="stylesheet"
+          href="css/material-design-iconic-font.css">
+<link rel="stylesheet" href="ol.css" type="text/css">
+<script src="ol.js"></script>
+
+</head>
+<body>
+<div  id="maps" class="maps">
+    <div class="marvel-device nexus5">
+        <div class="top-bar"></div>
+        <div class="sleep"></div>
+        <div class="volume"></div>
+        <div class="camera"></div>
+        <div class="screen">
+            <div class="screen-container">
+                <div class="status-bar">
+                    <div class="time"></div>
+                    <div class="battery">
+                        <i class="zmdi zmdi-battery"></i>
+                    </div>
+                    <div class="network">
+                        <i class="zmdi zmdi-network"></i>
+                    </div>
+                    <div class="wifi">
+                        <i class="zmdi zmdi-wifi-alt-2"></i>
+                    </div>
+                    <div class="star">
+                        <i class="zmdi zmdi-star"></i>
+                    </div>
+                </div>
+                <div class="chat">
+                    <div class="chat-container">
+                        <div class="user-bar">
+                            <div class="back">
+                                 <a href="index.html"> <img src="img/backarrow.png" height="15" width="15" alt="Back"></a>
+                            </div>
+                            <div class="avatar">
+                                <img src="img/default-user-image-300x300.png" alt="Avatar">
+                            </div>
+                            <div class="name">
+                                <span>Public Chat</span>
+                                <span class="status">online</span>
+                            </div>
+                            <div class="actions more">
+                                <i class="zmdi zmdi-more-vert"></i>
+                            </div>
+                            <div class="actions attachment">
+                                <i class="zmdi zmdi-attachment-alt"></i>
+                            </div>
+                            <div class="actions">
+                                <i class="zmdi zmdi-phone"></i>
+                            </div>
+                        </div>
+			<div class="conversation">
+                        <div id="contactnumber"></div>
+<script>
+function onSuccess(c) {
+console.log("gotContacts, number of results "+c.length);
+	picDiv = document.querySelector("#pictures");
+	for(var i=0, len=c.length; i<len; i++) {
+		console.dir(c[i]);
+		if(c[i].photos && c[i].photos.length > 0) {
+			document.getElementById("contactnumber").innerHTML += "<img src='"+c[i].photos[0].value+"'>";
+		}
+	}
+};
+
+function onError(contactError) {
+    alert('onError!');
+};
+ document.addEventListener("deviceready", onDeviceReady, false);
+function onDeviceReady() {
+// find all contacts
+var options = new ContactFindOptions();
+options.filter = ""; 
+options.multiple = true;
+var filter = ["id","firstName","lastName","displayName","thumbnail","phoneNumbers", "middleName"];
+navigator.contacts.find(filter, onSuccess, onError, options);
+}
+</script>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="jquery-1.11.2.min.js"></script>
+
+<script src="js/indexmain.js">
+</script>
+<link rel="stylesheet" type="text/css" href="css/indexmain.css">
+</body>
+</html>

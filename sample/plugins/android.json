@@ -9,6 +9,15 @@
   "installed_plugins": {
     "cordova-plugin-whitelist": {
       "PACKAGE_NAME": "com.sample.sravan"
+    },
+    "cordova-plugin-geolocation": {
+      "PACKAGE_NAME": "com.sample.sravan"
+    },
+    "cordova-plugin-contacts-phonenumbers": {
+      "PACKAGE_NAME": "com.sample.sravan"
+    },
+    "cordova-plugin-contacts": {
+      "PACKAGE_NAME": "com.sample.sravan"
     }
   },
   "dependent_plugins": {}

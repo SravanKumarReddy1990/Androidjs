@@ -13,6 +13,31 @@ var map = new ol.Map({
         zoom: 10
     })
 });
+ var onSuccess = function(position) {
+
+ map.getView().setCenter(ol.proj.transform([position.coords.longitude, position.coords.latitude], 'EPSG:4326', 'EPSG:3857'));
+    map.getView().setZoom(13);
+
+      //  alert('Latitude: '          +     position.coords.latitude      + '\n' +
+      //        'Longitude: '         + position.coords.longitude         + '\n' +
+      //        'Altitude: '          + position.coords.altitude          + '\n' +
+      //        'Accuracy: '          + position.coords.accuracy          + '\n' +
+      //        'Altitude Accuracy: ' + position.coords.altitudeAccuracy  + '\n' +
+      //        'Heading: '           + position.coords.heading           + '\n' +
+      //        'Speed: '             + position.coords.speed             + '\n' +
+      //        'Timestamp: '         + position.timestamp                + '\n');
+    };
+
+    // onError Callback receives a PositionError object
+    //
+    function onError(error) {
+        alert('code: '    + error.code    + '\n' +
+              'message: ' + error.message + '\n');
+    }
+
+    navigator.geolocation.getCurrentPosition(onSuccess, onError);
+
+
 
 map.on('click', function(evt) {
 var lonlat = ol.proj.transform(evt.coordinate, 'EPSG:3857', 'EPSG:4326');
