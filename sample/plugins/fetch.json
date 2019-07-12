@@ -18,7 +18,7 @@
   "cordova-plugin-contacts-phonenumbers": {
     "source": {
       "type": "registry",
-      "id": "cordova-plugin-contacts-phonenumbers"
+      "id": "cordova-plugin-contacts-phonenumbers@0.0.12"
     },
     "is_top_level": true,
     "variables": {}

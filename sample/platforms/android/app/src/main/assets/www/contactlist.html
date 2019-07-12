@@ -71,16 +71,32 @@
                             </div>
                         </div>
 			<div class="conversation">
-                        <div id="contactnumber"></div>
+<style>
+.scrollBbar 
+        {
+        position:fixed;
+        top:50px;
+        bottom:0;
+        left:0;
+        width:100%;
+        overflow-x:hidden;
+        overflow-y:auto;
+       }
+</style>
+                        <div id="contactnumber" class="scrollBbar"></div>
 <script>
 function onSuccess(c) {
 console.log("gotContacts, number of results "+c.length);
-	picDiv = document.querySelector("#pictures");
+	//picDiv = document.querySelector("#pictures");
 	for(var i=0, len=c.length; i<len; i++) {
 		console.dir(c[i]);
-		if(c[i].photos && c[i].photos.length > 0) {
-			document.getElementById("contactnumber").innerHTML += "<img src='"+c[i].photos[0].value+"'>";
-		}
+document.getElementById("contactnumber").innerHTML += "<p>";
+for (var j=0;j<c[i].phoneNumbers.length;j++) {
+  
+    document.getElementById("contactnumber").innerHTML +=c[i].phoneNumbers[j].value;
+}
+document.getElementById("contactnumber").innerHTML += "<br>"+c[i].name.familyName+" "+c[i].name.givenName+"</p>";
+		
 	}
 };
 
@@ -93,7 +109,7 @@ function onDeviceReady() {
 var options = new ContactFindOptions();
 options.filter = ""; 
 options.multiple = true;
-var filter = ["id","firstName","lastName","displayName","thumbnail","phoneNumbers", "middleName"];
+var filter = ["id","name","phoneNumbers", "middleName","emails"];
 navigator.contacts.find(filter, onSuccess, onError, options);
 }
 </script>
