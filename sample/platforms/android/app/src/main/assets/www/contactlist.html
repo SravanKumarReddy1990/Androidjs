@@ -53,22 +53,11 @@
                             <div class="back">
                                  <a href="index.html"> <img src="img/backarrow.png" height="15" width="15" alt="Back"></a>
                             </div>
-                            <div class="avatar">
-                                <img src="img/default-user-image-300x300.png" alt="Avatar">
+                            <div >
+                                
+<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name">
                             </div>
-                            <div class="name">
-                                <span>Public Chat</span>
-                                <span class="status">online</span>
-                            </div>
-                            <div class="actions more">
-                                <i class="zmdi zmdi-more-vert"></i>
-                            </div>
-                            <div class="actions attachment">
-                                <i class="zmdi zmdi-attachment-alt"></i>
-                            </div>
-                            <div class="actions">
-                                <i class="zmdi zmdi-phone"></i>
-                            </div>
+                           
                         </div>
 			<div class="conversation">
 <style>
@@ -82,21 +71,82 @@
         overflow-x:hidden;
         overflow-y:auto;
        }
+* {
+  box-sizing: border-box;
+}
+
+#myInput {
+  background-image: url('/css/searchicon.png');
+  background-position: 10px 12px;
+  background-repeat: no-repeat;
+  width: 100%;
+  font-size: 16px;
+  padding: 12px 20px 12px 40px;
+  border: 1px solid #ddd;
+  margin-bottom: 12px;
+}
+
+#myUL {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+#myUL li a {
+  border: 1px solid #ddd;
+  margin-top: -1px; /* Prevent double borders */
+  background-color: #f6f6f6;
+  padding: 12px;
+  text-decoration: none;
+  font-size: 18px;
+  color: black;
+  display: block
+}
+
+#myUL li a:hover:not(.header) {
+  background-color: #eee;
+}
 </style>
-                        <div id="contactnumber" class="scrollBbar"></div>
+<br>
+
+
+<div class="scrollBbar">
+ <ul id="myUL" class="list-group">
+    <li class='list-group-item'>First item</li>
+    <li class="list-group-item">Second item</li>
+    <li class="list-group-item">Third item</li>
+  </ul>
+</div>
+
 <script>
+function myFunction() {
+    var input, filter, ul, li, a, i, txtValue;
+    input = document.getElementById("myInput");
+    filter = input.value.toUpperCase();
+    ul = document.getElementById("myUL");
+    li = ul.getElementsByTagName("li");
+    for (i = 0; i < li.length; i++) {
+        a = li[i].getElementsByTagName("a")[0];
+        txtValue = a.textContent || a.innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            li[i].style.display = "";
+        } else {
+            li[i].style.display = "none";
+        }
+    }
+}
+
 function onSuccess(c) {
+document.getElementById("myUL").innerHTML = "";
 console.log("gotContacts, number of results "+c.length);
 	//picDiv = document.querySelector("#pictures");
 	for(var i=0, len=c.length; i<len; i++) {
-		console.dir(c[i]);
-document.getElementById("contactnumber").innerHTML += "<p>";
-for (var j=0;j<c[i].phoneNumbers.length;j++) {
-  
-    document.getElementById("contactnumber").innerHTML +=c[i].phoneNumbers[j].value;
+		//console.dir(c[i]);
+for (var j=0;j<c[i].phoneNumbers.length;j++) {  
+
+document.getElementById("myUL").innerHTML += "<li class='list-group-item'><a href='#'>"+c[i].name.familyName+" "+c[i].name.givenName+" "+ c[i].phoneNumbers[j].value+"</a></li>";
 }
-document.getElementById("contactnumber").innerHTML += "<br>"+c[i].name.familyName+" "+c[i].name.givenName+"</p>";
-		
+
 	}
 };
 
